@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMPLOYEE FORM</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/employee.css">
+</head>
+
+<body>
+    <div class="employee_container">
+        <div class="container mt-5">
+            <h1 class="mb-4">Employee Management</h1>
+            <form id="employeeForm">
+                <div class="mb-3 row">
+                    <label for="name" class="col-sm-2 col-form-label">Employee Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" maxlength="30" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="employeeId" class="col-sm-2 col-form-label">Employee ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="employeeId" name="employeeId" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="department" class="col-sm-2 col-form-label">Department</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" id="department" name="department" required>
+                            <option value="">Select Department</option>
+                            <option value="IT">IT</option>
+                            <option value="HR">HR</option>
+                            <option value="Finance">Finance</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="dob" class="col-sm-2 col-form-label">Date of Birth</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="dob" name="dob" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Gender</label>
+                    <div class="col-sm-10">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="designation" class="col-sm-2 col-form-label">Designation</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="designation" name="designation" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="salary" class="col-sm-2 col-form-label">Salary</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="salary" name="salary" maxlength="8" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap Bundle JS (Popper.js included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JcKb8q3aoGZE2gi5kyjuqC3X24jZAyn5D5fnz9+Y8jrlEZ5vz2nUc1MI8RlOf5Ql"
+        crossorigin="anonymous"></script>
+    <!-- Custom Script -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#employeeForm').submit(function (event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:3002/addEmployee', // Adjust the URL to match your backend
+                    data: formData, // Send form data as form-urlencoded
+                    success: function (response) {
+                        alert('Employee added successfully');
+                        $('#employeeForm')[0].reset(); // Clear form fields
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

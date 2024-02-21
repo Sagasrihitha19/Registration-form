@@ -1,0 +1,15 @@
+
+.container{
+    background-color: #2891c152;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(171, 139, 139, 0.1);
+    width: 50%;
+    font-size: larger;
+   margin: 20px;
+}
+.employee_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
